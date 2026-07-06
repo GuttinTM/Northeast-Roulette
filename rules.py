@@ -39,3 +39,4 @@ def rules_show(know_rules):
         {sleep(3)}
         print("Good Luck!")
         print('')
+
