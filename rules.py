@@ -40,3 +40,4 @@ def rules_show(know_rules):
         print("Good Luck!")
         print('')
 
+ 
