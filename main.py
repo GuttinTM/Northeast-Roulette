@@ -85,7 +85,7 @@ while hp_player > 0 and hp_enemy > 0:
             while True:
                 try:
                     player_choice = str(input(f"What will you do?\n>> Shoot the enemy [1]\n>> Shoot yourself [2]\n>> "))[0]
-                    line(80)
+                    line(100)
                     if player_choice in "12":
                         break
                     else:
