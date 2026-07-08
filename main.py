@@ -60,7 +60,8 @@ while hp_player > 0 and hp_enemy > 0:
 
     print(f"Gun loaded! There's {numb_real} real bullets {numb_fake} fake bullets.")
     print(f'The round {current_round} has started! ',end='')
-
+    bullets_left = True
+    
     # Math: Rounds
     while bullets_left:
         # Match: Player's turn
