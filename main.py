@@ -77,7 +77,7 @@ while hp_player > 0 and hp_enemy > 0:
                 bullets_left = False
                 break
 
-            print(f"It's your turn. Make your choice!\n")
+            print(f"It's your turn. Make your choice!")
             sleep(3)
             line(100)
             print(f"Player's: {hp_player}")
@@ -154,7 +154,7 @@ while hp_player > 0 and hp_enemy > 0:
 
             print("It's the brazilian's turn!")
             sleep(2)
-            print("He is thinking about what he's gonna do...\n")
+            print("He is thinking about what he's gonna do...")
             line(100)
             sleep(5)
 
@@ -173,7 +173,7 @@ while hp_player > 0 and hp_enemy > 0:
                     break
 
                 if gun_order[0] == False:
-                    print('He shoot to you and the bullet was fake. Nothing happened.\n')
+                    print('He shoot to you and the bullet was fake. Nothing happened.')
                     line(100)
                     sleep(3)
                     del gun_order[0]
