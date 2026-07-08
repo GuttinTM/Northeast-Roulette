@@ -35,8 +35,8 @@ sleep(5)
 title('MACH STARTED')
 
 # The match
-hp_player = 1
-hp_enemy = 1
+hp_player = 5
+hp_enemy = 5
 bullets_left = True
 while hp_player > 0 and hp_enemy > 0:
 
@@ -44,7 +44,7 @@ while hp_player > 0 and hp_enemy > 0:
     player_turn = True
 
     # Match: generation of bullets
-    numb_bullets = rd.randint(2, 4) # Ex: By chance is 4 
+    numb_bullets = rd.randint(2, 8) # Ex: By chance is 4 
 
     numb_real = rd.randint(1, numb_bullets - 1) # By chance, it's 3
     real_list = list() # A empty list
