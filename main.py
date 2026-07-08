@@ -40,7 +40,7 @@ hp_enemy = 5
 bullets_left = True
 while hp_player > 0 and hp_enemy > 0:
 
-    current_round = 1
+    current_round = 0
     player_turn = True
 
     # Match: generation of bullets
@@ -59,7 +59,7 @@ while hp_player > 0 and hp_enemy > 0:
     gun_order = gun_order_gen # [True , true, false, false]
 
     print(f"Gun loaded! There's {numb_real} real bullets {numb_fake} fake bullets.")
-    print(f'The round {current_round} has started! ',end='')
+    print(f'The round {current_round + 1} has started! ',end='')
     bullets_left = True
     
     # Math: Rounds
