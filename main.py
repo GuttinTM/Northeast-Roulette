@@ -1,14 +1,20 @@
-import random as rd
-from time import sleep
+# Project imports
 from rules import rules_show
 from title import title, line
 from generation_orders_bullets import gen_order_bullets as gob
 from enemy_choice import enemy
 
+# Library imports
+import random as rd
+from time import sleep
+from rich import print as rprint
+from console_color import console
+from rich.console import Console
+
 # game's verssion: 1.0
 
 # Game's Tittle
-title('NORTHEAST ROULETTE')
+title('NORTHEAST', 'ROULETTE', "bold green", "yellow3")
 
 # Asking if the player knows the rules. Handling excepetions.
 print("Welcome to the underground of brazilian's northeast. How about betting your life for" \
