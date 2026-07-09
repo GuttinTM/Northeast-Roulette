@@ -4,6 +4,7 @@ from rules import rules_show
 from title import title, line
 from generation_orders_bullets import gen_order_bullets as gob
 from enemy_choice import enemy
+
 # game's verssion: 1.0
 
 # Game's Tittle
