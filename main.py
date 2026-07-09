@@ -9,27 +9,27 @@ import random as rd
 from time import sleep
 from rich import print as rprint
 from rich.console import Console
-
+console = Console()
 # game's verssion: 1.0
 
 # Game's Tittle
 title('NORTHEAST', 'ROULETTE', "bold green", "yellow3")
 
 # Asking if the player knows the rules. Handling excepetions.
-print("Welcome to the underground of brazilian's northeast. How about betting your life for" \
-" a coffee and couscous package?")
+rprint("Welcome to the underground of [bold green]brazilian's northeast[/bold green]. How about betting your life for" \
+" a [orange4]coffee [/orange4]and [yellow3]couscous package?")
 sleep(5)
 while True:
     try:
-        know_rules = str(input('Do you know the rules?\n[Y] or [N] >> '))[0].upper()
+        know_rules = console.input('Do you know the rules?\n[[cyan2]Y[/cyan2]] or [[cyan2]N[/cyan2]] >> ')[0].upper()
         if know_rules in "YN":
             break
         else:
-            print('Invalid Answer! Please try again.')
+            rprint('[red]Invalid Answer![/red] Please try again.')
             sleep(2)
             continue
     except:
-        print('Invalid Answer! Please try again.')
+        rprint('[red]Invalid Answer![/red] Please try again.')
         sleep(2)
         continue
 
