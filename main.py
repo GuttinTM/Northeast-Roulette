@@ -8,7 +8,6 @@ from enemy_choice import enemy
 import random as rd
 from time import sleep
 from rich import print as rprint
-from console_color import console
 from rich.console import Console
 
 # game's verssion: 1.0
