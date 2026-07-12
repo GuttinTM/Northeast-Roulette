@@ -13,7 +13,7 @@ console = Console()
 # game's verssion: 1.0
 
 # Game's Tittle
-title('NORTHEAST', 'ROULETTE', "bold green", "yellow3")
+title('NORTHEAST', "bold green", 'ROULETTE', "yellow3")
 
 # Asking if the player knows the rules. Handling excepetions.
 rprint("Welcome to the underground of [bold green]brazilian's northeast[/bold green]. How about betting your life for" \
@@ -38,15 +38,16 @@ rules_show(know_rules)
 input('Press Enter to start the game!')
 print('Loading...')
 sleep(5)
-title('MACH STARTED')
+title('MATCH', 'STARTED', "bold green", "yellow3")
 
 # The match
 hp_player = 5
 hp_enemy = 5
 bullets_left = True
+current_round = 0
 while hp_player > 0 and hp_enemy > 0:
-
-    current_round = 0
+    
+    current_round += 1
     player_turn = True
 
     # Match: generation of bullets
@@ -61,11 +62,11 @@ while hp_player > 0 and hp_enemy > 0:
     gob(numb_fake_list, False, numb_fake) # Put boolean values in the list belove based on the bullet number
 
     gun_order_gen = rd.sample(real_list + numb_fake_list, k=len(real_list + numb_fake_list)) # Create a list containing the
-    # boolean values from the list of real and false bullets and shuffle the list.
+    # boolean values from the list of live and false bullets and shuffle the list.
     gun_order = gun_order_gen # [True , true, false, false]
 
-    print(f"Gun loaded! There's {numb_real} real bullets {numb_fake} fake bullets.")
-    print(f'The round {current_round + 1} has started! ',end='')
+    rprint(f"Gun loaded! There's [red1]{numb_real} live bullets [/red1] and [dodger_blue1]{numb_fake} blank bullets.")
+    print(f'The round {current_round} has started! ',end='')
     bullets_left = True
     
     # Math: Rounds
@@ -83,11 +84,11 @@ while hp_player > 0 and hp_enemy > 0:
                 bullets_left = False
                 break
 
-            print(f"It's your turn. Make your choice!")
+            rprint(f"[grey100]It's your turn. Make your choice!")
             sleep(3)
             line(100)
-            print(f"Player's: {hp_player}")
-            print(f"Enemy's HP: {hp_enemy}")
+            rprint(f"[dodger_blue1]Player's HP: [red3]{hp_player}")
+            rprint(f"[dodger_blue1]Enemy's HP: [red3]{hp_enemy}")
             line(100)
             while True:
                 try:
@@ -101,7 +102,7 @@ while hp_player > 0 and hp_enemy > 0:
                         sleep(2)
                         continue
                 except:
-                    print('Invalid choice! Try again!\n')
+                    print('Invalid choice! Try again! (If you wanna exit, do it again.)')
                     line(100)
                     sleep(2)
                     continue
@@ -110,7 +111,7 @@ while hp_player > 0 and hp_enemy > 0:
             if player_choice == "1": # Shot the enemy
 
                 if gun_order[0] == True:
-                    print('You shoot the enemy and the bullet was real!\nThe enemy lost -1 HP.')
+                    print('You shoot the enemy and the bullet was live!\nThe enemy lost -1 HP.')
                     hp_enemy -= 1
                     del gun_order[0]
                     print('Your turn is over!')
@@ -120,7 +121,7 @@ while hp_player > 0 and hp_enemy > 0:
                     break
 
                 if gun_order[0] == False:
-                    print("You shoot the enemy, but the bullet is fake.\nNothing happened.")
+                    print("You shoot the enemy, but the bullet is blank.\nNothing happened.")
                     del gun_order[0]
                     print('Your turn is over!')
                     line(100)
@@ -131,7 +132,7 @@ while hp_player > 0 and hp_enemy > 0:
             if player_choice == "2": # Shot yourself
 
                 if gun_order[0] == True:
-                    print('You shoot yourself and the bullet was real! You lost -1 HP.')
+                    print('You shoot yourself and the bullet was live! You lost -1 HP.')
                     sleep(1)
                     hp_player -= 1
                     del gun_order[0]
@@ -142,7 +143,7 @@ while hp_player > 0 and hp_enemy > 0:
                     break
 
                 if gun_order[0] == False:
-                    print('You shoot yourself and the bullet was fake! You got one more turn!')
+                    print('You shoot yourself and the bullet was blank! You got one more turn!')
                     del gun_order[0]
                     line(100)
                     sleep(5)
@@ -167,7 +168,7 @@ while hp_player > 0 and hp_enemy > 0:
             if enemy(gun_order, hp_player, hp_enemy) == 1: # Shoot to player
 
                 if gun_order[0] == True:
-                    print('He shoot to you and the bullet was real!')
+                    print('He shoot to you and the bullet was live!')
                     sleep(1)
                     print('You lost -1 HP!')
                     hp_player -= 1
@@ -179,7 +180,7 @@ while hp_player > 0 and hp_enemy > 0:
                     break
 
                 if gun_order[0] == False:
-                    print('He shoot to you and the bullet was fake. Nothing happened.')
+                    print('He shoot to you and the bullet was blank. Nothing happened.')
                     line(100)
                     sleep(3)
                     del gun_order[0]
@@ -190,7 +191,7 @@ while hp_player > 0 and hp_enemy > 0:
             if enemy(gun_order, hp_player, hp_enemy) == 2: # Shoot to himself
 
                 if gun_order[0] == True:
-                    print('He shoot to himself and the bullet was real! He lost -1 HP.')
+                    print('He shoot to himself and the bullet was live! He lost -1 HP.')
                     hp_enemy -= 1
                     del gun_order[0]
                     print('His turn is over!')
@@ -201,7 +202,7 @@ while hp_player > 0 and hp_enemy > 0:
                     
 
                 if gun_order[0] == False:
-                    print('He shoot to himself and the bullet was fake! He got one more turn.')
+                    print('He shoot to himself and the bullet was blank! He got one more turn.')
                     line(100)
                     sleep(3)
                     del gun_order[0]
@@ -215,11 +216,11 @@ while hp_player > 0 and hp_enemy > 0:
             break
 
 if hp_enemy == 0:
-    title(f"WINNER: PLAYER!")
+    title(f"WINNER: PLAYER!", "chartreuse3")
     sleep(1)
-    print('You almost lost your mind!\nBut you got the coffee and couscous package.')
+    rprint('You almost lost your [dark_red]mind![/dark_red]\nBut you got [yellow2]coffee and couscous package.')
 else:
-    title(f"YOU ARE DEAD!")
+    title(f"YOU ARE DEAD!", 'dark_red')
     sleep(1)
-    print('You wasted your life for food! How you are pathetic!')
+    rprint('You wasted your life for food! [red1]How you are pathetic!')
 
