@@ -4,6 +4,7 @@ def rules_show(know_rules):
     if know_rules == 'Y':
         print("Let's start the game!")
 
+
     if know_rules == 'N':
         print("A dispute begins between the player and the northeaster")
         sleep(5)
