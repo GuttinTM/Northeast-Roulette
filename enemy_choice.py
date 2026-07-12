@@ -35,3 +35,5 @@ def enemy(gun_order, hp_player, hp_enemy):
         
     if num_fake - num_real >= 1:
         return choices[1]
+
+
