@@ -38,7 +38,7 @@ rules_show(know_rules)
 input('Press Enter to start the game!')
 print('Loading...')
 sleep(5)
-title('MATCH', 'STARTED', "bold green", "yellow3")
+title('MATCH', 'bold green', 'STARTED', "yellow3")
 
 # The match
 hp_player = 5
