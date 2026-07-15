@@ -212,6 +212,3 @@ else:
     title(f"YOU ARE DEAD!", 'dark_red')
     sleep(1)
     rprint('You wasted your life for food! [red1]How you are pathetic!')
-
-
-

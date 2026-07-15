@@ -8,3 +8,4 @@ def gen_order_bullets(list_bullet, is_real, numb ):
         for bullet in range(0, numb):
             list_bullet.append(False)
 
+
