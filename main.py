@@ -3,6 +3,7 @@ from rules import rules_show
 from title import title, line
 from generation_orders_bullets import gen_order_bullets as gob
 from enemy_choice import enemy
+from gun_class import Gun
 
 # Library imports
 import random as rd
@@ -51,21 +52,9 @@ while hp_player > 0 and hp_enemy > 0:
     player_turn = True
 
     # Match: generation of bullets
-    numb_bullets = rd.randint(2, 8) # Ex: By chance is 4 
+    gun = Gun()
 
-    numb_real = rd.randint(1, numb_bullets - 1) # By chance, it's 3
-    real_list = list() # A empty list
-    gob(real_list, True, numb_real) # Put boolean values in the list belove based on the bullet number
-
-    numb_fake = numb_bullets - numb_real # # So it's 1
-    numb_fake_list = list() # A empty list
-    gob(numb_fake_list, False, numb_fake) # Put boolean values in the list belove based on the bullet number
-
-    gun_order_gen = rd.sample(real_list + numb_fake_list, k=len(real_list + numb_fake_list)) # Create a list containing the
-    # boolean values from the list of live and false bullets and shuffle the list.
-    gun_order = gun_order_gen # [True , true, false, false]
-
-    rprint(f"Gun loaded! There's [red1]{numb_real} live bullets [/red1] and [dodger_blue1]{numb_fake} blank bullets.")
+    rprint(f"Gun loaded! There's [red1]{gun.numb_lives} live bullets [/red1] and [dodger_blue1]{gun.numb_blanks} blank bullets.")
     print(f'The round {current_round} has started! ',end='')
     bullets_left = True
     
@@ -76,7 +65,7 @@ while hp_player > 0 and hp_enemy > 0:
         # Match: Checking the valid choice
         while player_turn == True:
 
-            if len(gun_order) <= 0:
+            if len(gun.gun_order) <= 0:
                 bullets_left = False
                 break
 
@@ -110,19 +99,19 @@ while hp_player > 0 and hp_enemy > 0:
             # Match: system of the choices
             if player_choice == "1": # Shot the enemy
 
-                if gun_order[0] == True:
+                if gun.gun_order[0] == True:
                     print('You shoot the enemy and the bullet was live!\nThe enemy lost -1 HP.')
                     hp_enemy -= 1
-                    del gun_order[0]
+                    del gun.gun_order[0]
                     print('Your turn is over!')
                     line(100)
                     player_turn = False
                     sleep(5)
                     break
 
-                if gun_order[0] == False:
+                if gun.gun_order[0] == False:
                     print("You shoot the enemy, but the bullet is blank.\nNothing happened.")
-                    del gun_order[0]
+                    del gun.gun_order[0]
                     print('Your turn is over!')
                     line(100)
                     player_turn = False
@@ -131,27 +120,27 @@ while hp_player > 0 and hp_enemy > 0:
 
             if player_choice == "2": # Shot yourself
 
-                if gun_order[0] == True:
+                if gun.gun_order[0] == True:
                     print('You shoot yourself and the bullet was live! You lost -1 HP.')
                     sleep(1)
                     hp_player -= 1
-                    del gun_order[0]
+                    del gun.gun_order[0]
                     print('Your turn is over!')
                     line(100)
                     player_turn = False
                     sleep(5)
                     break
 
-                if gun_order[0] == False:
+                if gun.gun_order[0] == False:
                     print('You shoot yourself and the bullet was blank! You got one more turn!')
-                    del gun_order[0]
+                    del gun.gun_order[0]
                     line(100)
                     sleep(5)
                     break
             
         while player_turn == False:
 
-            if len(gun_order) <= 0:
+            if len(gun.gun_order) <= 0:
                 bullets_left = False
                 break
 
@@ -165,9 +154,9 @@ while hp_player > 0 and hp_enemy > 0:
             line(100)
             sleep(5)
 
-            if enemy(gun_order, hp_player, hp_enemy) == 1: # Shoot to player
+            if enemy(gun.gun_order, hp_player, hp_enemy) == 1: # Shoot to player
 
-                if gun_order[0] == True:
+                if gun.gun_order[0] == True:
                     print('He shoot to you and the bullet was live!')
                     sleep(1)
                     print('You lost -1 HP!')
@@ -175,25 +164,25 @@ while hp_player > 0 and hp_enemy > 0:
                     print('His turn is over!')
                     line(100)
                     sleep(3)
-                    del gun_order[0]
+                    del gun.gun_order[0]
                     player_turn = True
                     break
 
-                if gun_order[0] == False:
+                if gun.gun_order[0] == False:
                     print('He shoot to you and the bullet was blank. Nothing happened.')
                     line(100)
                     sleep(3)
-                    del gun_order[0]
+                    del gun.gun_order[0]
                     player_turn = True
                     break
                     
 
-            if enemy(gun_order, hp_player, hp_enemy) == 2: # Shoot to himself
+            if enemy(gun.gun_order, hp_player, hp_enemy) == 2: # Shoot to himself
 
-                if gun_order[0] == True:
+                if gun.gun_order[0] == True:
                     print('He shoot to himself and the bullet was live! He lost -1 HP.')
                     hp_enemy -= 1
-                    del gun_order[0]
+                    del gun.gun_order[0]
                     print('His turn is over!')
                     line(100)
                     sleep(3)
@@ -201,11 +190,11 @@ while hp_player > 0 and hp_enemy > 0:
                     break
                     
 
-                if gun_order[0] == False:
+                if gun.gun_order[0] == False:
                     print('He shoot to himself and the bullet was blank! He got one more turn.')
                     line(100)
                     sleep(3)
-                    del gun_order[0]
+                    del gun.gun_order[0]
                     break
 
         if hp_player <= 0 or hp_enemy <= 0:
